@@ -2,7 +2,7 @@
 let DayofMonth = ["//FILLER//","","","", "", "", "", "","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
 
 /**
- * This function saves the Array to the Localstorage
+ * This function saves a Array to the Localstorage
  * @param {string} key 
  * @param {array} DayofMonth 
  */
@@ -10,7 +10,7 @@ function setArray(key, DayofMonth){
     localStorage.setItem(key, JSON.stringify(DayofMonth));
 }
 /**
- * This function load the Array out of the Localstorage
+ * This function load a Array out of the Localstorage
  * and give a empty Array if the first Statement is not available
  * @param {string} key 
  */
@@ -37,7 +37,11 @@ function getCalenderData() {
 /**
  * This function defines 2 Variables
  * used to update the Reminder in the Cells
- * @param {*} i 
+ * @param {string} TEXT - the Value of "text"
+ * @param {number} DAY -  the value of "SelectDay"
+ * Slice @param TEXT  in the Position of @param DAY 
+ * in the Array @param DayofMonth
+ * and run @function getCalenderData() to refresh the Calender
  */
 
 function getInputData(i) {
@@ -45,7 +49,6 @@ function getInputData(i) {
     let DAY = document.getElementById("SelectDay").value;
     DayofMonth.splice(DAY, 1, TEXT);
     document.getElementById("text").value = "";
-    document.getElementById("month").innerHTML = "";
     getCalenderData();
     
 }
