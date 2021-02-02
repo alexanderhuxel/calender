@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+let DayofMonth = ["//FILLER//","","","", "", "", "", "","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+
+/**
+ * This function saves a Array to the Localstorage
+ * @param {string} key 
+ * @param {array} DayofMonth 
+ */
+function setArray(key, DayofMonth){
+    localStorage.setItem(key, JSON.stringify(DayofMonth));
+}
+/**
+ * This function load a Array out of the Localstorage
+ * and give a empty Array if the first Statement is not available
+ * @param {string} key 
+ */
+function getArray(key){
+    return   JSON.parse(localStorage.getItem(key)) || [] ;
+}
+
+/**
+ * This function fill the 30 Cells of the Calender 
+ * with inserting the HTML by run
+ * @function getData(@param {string} i)
+ */
+function getCalenderData() {
+    let date = 1;
+    for (let i = 1; i &lt; 31; i++) {
+
+        document.getElementById("month").innerHTML += getData(i);
+        // if (typeof DayofMonth[i] == "") {
+        //     document.getElementById("post").innerHTML = "test"
+        // }
+    }
+}
+
+/**
+ * This function defines 2 Variables
+ * used to update the Reminder in the Cells
+ * @param {string} TEXT - the Value of "text"
+ * @param {number} DAY -  the value of "SelectDay"
+ * Slice @param TEXT  in the Position of @param DAY 
+ * in the Array @param DayofMonth
+ * and run @function getCalenderData() to refresh the Calender
+ */
+
+function getInputData(i) {
+    let TEXT = document.getElementById("text").value;
+    let DAY = document.getElementById("SelectDay").value;
+    DayofMonth.splice(DAY, 1, TEXT);
+    document.getElementById("text").value = "";
+    getCalenderData();
+    
+}
+/**
+ * This function generating the 30 Cells ins the Calender by
+ * @returns the id and classes needed  
+ * @param {string} i needet for the next function
+ * @function getCalenderData() 
+ */
+
+function getData(i) {
+    setArray("DayofMonth", DayofMonth);
+    return `&lt;div  id="day" class="day">
+            &lt;p id="date" class="date">${i}&lt;/p>
+            &lt;p  id="post${i}">${(getArray(DayofMonth))}&lt;/p>
+        &lt;/div>`
+}
+/**
+ * This function generating the Time
+ * and update every 0.05 seconds
+ * and inserting it into the HTML
+ * @param {number} HOURS - get the Actual Hour with the TimeLIbary
+ * @param {number} MINUTES - get the Actual Minute with the TimeLIbary
+ * @param {number} SECONDS - get the Actual Second with the TimeLIbary
+ */
+function getTime() {
+    setInterval(() => {
+        let HOURS = new Date().getHours();
+        let MINUTES = new Date().getMinutes();
+        let SECONDS = new Date().getSeconds();
+        document.getElementById("time").innerHTML = "Uhrzeit: " + HOURS + ":" + MINUTES + ":" + SECONDS;
+
+    }, 50);
+}
+/**
+ * This function generating the Date
+ * and  update every 0.05 seconds
+ * and inserting it into the HTML 
+ *  @param {number}  DAY - get the Actual Day with the TimeLIbary
+ *  @param {number} MONTH - get the Actual Month with the TimeLIbary
+ *  @param {number} YEAR - get the Actual Year with the TimeLIbary
+ */
+function getDate() {
+    setInterval(() => {
+        let DAY = new Date().getUTCDate();
+        let MONTH = new Date().getUTCMonth() + 1;
+        let YEAR = new Date().getUTCFullYear();
+        document.getElementById("actual_date").innerHTML = "Datum: " + DAY + "." + MONTH + "." + YEAR;
+    }, 50);
+}
+/**
+ * This function Iterrating from 1 to 31 
+ * and Creating the options of the Selectiontag
+ * with the list of 1-30
+ */
+function getOption() {
+    for (let i = 1; i &lt; 31; i++) {
+        document.getElementById("SelectDay").innerHTML += `
+        &lt;option value="${i}">.${i}&lt;/option>`
+    }
+
+}
+
+
+
+
+
+/**
+ * This function is a Initiator to start the App
+ * and run all required functions
+ * @function getTime();
+ * @function getCalenderData();
+ * @function getDate();
+ * @function getOption();
+ */
+window.onload = function () {
+    getTime();
+    getCalenderData();
+    getDate();
+    getOption();
+
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getArray">getArray</a></li><li><a href="global.html#getCalenderData()">getCalenderData()</a></li><li><a href="global.html#getData@param%257Bstring%257Di">getData</a></li><li><a href="global.html#getDate">getDate</a></li><li><a href="global.html#getInputData">getInputData</a></li><li><a href="global.html#getOption">getOption</a></li><li><a href="global.html#getOption();">getOption();</a></li><li><a href="global.html#getTime">getTime</a></li><li><a href="global.html#setArray">setArray</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Feb 02 2021 19:37:09 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

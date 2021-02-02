@@ -2,15 +2,18 @@
 let DayofMonth = ["//FILLER//","","","", "", "", "", "","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
 
 /**
- * This function saves a Array to the Localstorage
+ * saves a Array to the Localstorage
  * @param {string} key 
  * @param {array} DayofMonth 
  */
+
+
+
 function setArray(key, DayofMonth){
     localStorage.setItem(key, JSON.stringify(DayofMonth));
 }
 /**
- * This function load a Array out of the Localstorage
+ * load a Array out of the Localstorage
  * and give a empty Array if the first Statement is not available
  * @param {string} key 
  */
@@ -19,7 +22,7 @@ function getArray(key){
 }
 
 /**
- * This function fill the 30 Cells of the Calender 
+ * fill the 30 Cells of the Calender 
  * with inserting the HTML by run
  * @function getData(@param {string} i)
  */
@@ -35,7 +38,7 @@ function getCalenderData() {
 }
 
 /**
- * This function defines 2 Variables
+ * defines 2 Variables
  * used to update the Reminder in the Cells
  * @param {string} TEXT - the Value of "text"
  * @param {number} DAY -  the value of "SelectDay"
@@ -47,32 +50,32 @@ function getCalenderData() {
 function getInputData(i) {
     let TEXT = document.getElementById("text").value;
     let DAY = document.getElementById("SelectDay").value;
+    DayofMonth = getArray("DayofMonth", DayofMonth);
     DayofMonth.splice(DAY, 1, TEXT);
+    setArray("DayofMonth",DayofMonth);
     document.getElementById("text").value = "";
     getCalenderData();
     
 }
 /**
- * This function generating the 30 Cells ins the Calender by
+ * generating the 30 Cells ins the Calender by
  * @returns the id and classes needed  
  * @param {string} i needet for the next function
  * @function getCalenderData() 
  */
 
 function getData(i) {
-    setArray("DayofMonth", DayofMonth);
-    return `<div  id="day" class="day">
+    return `<div   class="day">
             <p id="date" class="date">${i}</p>
-            <p  id="post${i}">${(getArray(DayofMonth))}</p>
-        </div>`
+            <p  id="post${i}">${DayofMonth[i]}</p></div>`
 }
 /**
- * This function generating the Time
+ * generating the Time
  * and update every 0.05 seconds
  * and inserting it into the HTML
- * @param {number} HOURS - get the Actual Hour with the TimeLIbary
- * @param {number} MINUTES - get the Actual Minute with the TimeLIbary
- * @param {number} SECONDS - get the Actual Second with the TimeLIbary
+ * @param {number} HOURS - Actual Time
+ * @param {number} MINUTES - Actual Minutes
+ * @param {number} SECONDS - Actual Seconds
  */
 function getTime() {
     setInterval(() => {
@@ -84,12 +87,12 @@ function getTime() {
     }, 50);
 }
 /**
- * This function generating the Date
+ * generating the Date
  * and  update every 0.05 seconds
  * and inserting it into the HTML 
- *  @param {number}  DAY - get the Actual Day with the TimeLIbary
- *  @param {number} MONTH - get the Actual Month with the TimeLIbary
- *  @param {number} YEAR - get the Actual Year with the TimeLIbary
+ *  @param {number}  DAY - Actual Day
+ *  @param {number} MONTH - Actual Month
+ *  @param {number} YEAR - Actual Year
  */
 function getDate() {
     setInterval(() => {
@@ -100,7 +103,7 @@ function getDate() {
     }, 50);
 }
 /**
- * This function Iterrating from 1 to 31 
+ * Iterrating from 1 to 31 
  * and Creating the options of the Selectiontag
  * with the list of 1-30
  */
@@ -117,7 +120,7 @@ function getOption() {
 
 
 /**
- * This function is a Initiator to start the App
+ * is a Initiator to start the App
  * and run all required functions
  * @function getTime();
  * @function getCalenderData();

@@ -51,18 +51,18 @@ header {
   gap: 1rem;
   background-color: gray;
   height: auto; }
-  #month #day {
+  #month .day {
     position: relative;
     width: 200px;
     height: 200px;
     border: solid 3px black;
     border-radius: 10px;
     border: solid white 2px; }
-    #month #day #post {
+    #month .day #post {
       font-size: 1.5em;
       margin-left: 10px;
       word-break: normal; }
-    #month #day #date {
+    #month .day #date {
       width: auto;
       text-align: center;
       border-radius: 10px;
