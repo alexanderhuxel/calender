@@ -1,5 +1,5 @@
 
-let DayofMonth = ["//FILLER//","","","", "", "", "", "","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+let DayofMonth = ["//FILLER//","lorem ipsum","","", "", "", "", "","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
 
 /**
  * saves a Array to the Localstorage
@@ -67,7 +67,7 @@ function getInputData(i) {
 function getData(i) {
     return `<div   class="day">
             <p id="date" class="date">${i}</p>
-            <p  id="post${i}">${DayofMonth[i]}</p></div>`
+            <p  id="post">${DayofMonth[i]}</p></div>`
 }
 /**
  * generating the Time
