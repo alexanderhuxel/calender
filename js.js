@@ -1,24 +1,39 @@
 
-let DayofMonth = ["//FILLER//","lorem ipsum","","", "", "", "", "","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+/**
+ * All Arrays
+ */
+let DayofMonth = ["//FILLER//", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+/**
+ * All Variables, saved to LocalStorage
+ */
+localStorage.setItem("loading", false);
+
+
 
 /**
  * saves a Array to the Localstorage
  * @param {string} key 
  * @param {array} DayofMonth 
- */
-
-
-
-function setArray(key, DayofMonth){
-    localStorage.setItem(key, JSON.stringify(DayofMonth));
+ * @param {boolean} loading - standart value is false
+ * Checking for the Variable @param {boolean} loading 
+ * if loading is false the function run 
+ * and set the Variable to true
+ * if loading is true the function dont run 
+ * */
+function setArray(key, DayofMonth) {
+    localStorage.getItem("loading");
+    loading = false;
+    if (loading == false) {
+        localStorage.setItem(key, JSON.stringify(DayofMonth));
+        loading = true;
+    }
 }
 /**
  * load a Array out of the Localstorage
- * and give a empty Array if the first Statement is not available
  * @param {string} key 
  */
-function getArray(key){
-    return   JSON.parse(localStorage.getItem(key)) || [] ;
+function getArray(key) {
+    return JSON.parse(localStorage.getItem(key)) || DayofMonth;
 }
 
 /**
@@ -44,18 +59,22 @@ function getCalenderData() {
  * @param {number} DAY -  the value of "SelectDay"
  * Slice @param TEXT  in the Position of @param DAY 
  * in the Array @param DayofMonth
+ * saves the Array @param DayofMonth with the Key DayofMonth
+ * in the LocalStorage
+ * clearing the the Value of the input
+ * clearing the old inserted datas
  * and run @function getCalenderData() to refresh the Calender
  */
 
 function getInputData(i) {
     let TEXT = document.getElementById("text").value;
     let DAY = document.getElementById("SelectDay").value;
-    DayofMonth = getArray("DayofMonth", DayofMonth);
     DayofMonth.splice(DAY, 1, TEXT);
-    setArray("DayofMonth",DayofMonth);
+    setArray("DayofMonth", DayofMonth);
     document.getElementById("text").value = "";
+    document.getElementById("month").innerHTML="";
     getCalenderData();
-    
+
 }
 /**
  * generating the 30 Cells ins the Calender by
@@ -63,8 +82,7 @@ function getInputData(i) {
  * @param {string} i needet for the next function
  * @function getCalenderData() 
  */
-
-function getData(i) {
+function getData(i) { 
     return `<div   class="day">
             <p id="date" class="date">${i}</p>
             <p  id="post">${DayofMonth[i]}</p></div>`
@@ -132,5 +150,4 @@ window.onload = function () {
     getCalenderData();
     getDate();
     getOption();
-
 }
