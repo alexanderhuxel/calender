@@ -4,7 +4,8 @@ html {
 
 body {
   margin: 0;
-  background-color: white; }
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif !important; }
 
 header {
   width: 100%;
@@ -72,6 +73,10 @@ header {
     border: solid 3px black;
     border-radius: 10px;
     border: solid black 2px; }
+    #month .day .fas {
+      position: absolute;
+      bottom: 15px;
+      right: 15px; }
     #month .day #post {
       font-size: 1.5em;
       margin-left: 10px;
@@ -88,22 +93,31 @@ header {
 
 @media (max-width: 800px) {
   header {
-    flex-direction: column !important; }
-    header #span {
-      flex-direction: column !important;
+    flex-direction: row; }
+    header #spacer {
       justify-content: center;
       align-items: center;
-      margin-left: 500px;
-      margin-top: 10px; }
-    header #clock {
+      position: absolute;
+      top: 70px;
+      right: 70px; }
+      header #spacer #span {
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center; }
+
+  #clock {
+    display: none !important; }
+
+  main {
+    margin-left: 16px;
+    margin-right: 16px; }
+    main #month {
+      margin-top: 100px;
       justify-content: center;
       align-items: center; }
-
-  #month {
-    margin-top: 100px; }
-    #month .day {
-      width: 150px;
-      height: 150px;
-      flex-grow: 1; } }
+      main #month .day {
+        width: 150px;
+        height: 150px;
+        flex-grow: 1; } }
 
 /*# sourceMappingURL=style.css.map */
